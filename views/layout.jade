@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    block styles
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+        div.container
+            div.navbar-header
+                a.navbar-brand(href='#') Project name
+            div#navbar.collapse.navbar-collapse
+                ul.nav.navbar-nav
+                    li.active
+                        a(href='#') Home
+                    li
+                        a(href='#') About
+                    li
+                        a(href='#') Contact
+
+    block content
+    block scripts
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/jquery.min.js')
