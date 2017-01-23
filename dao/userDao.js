@@ -18,7 +18,9 @@ module.exports = {
             var param = req.query || req.params;
 
             connection.query(sql.queryAll, function(err, result){
-                jsonWrite(res, result);
+                console.log(result);
+                res.render('user/list',{users:result});
+                //jsonWrite(res, result);
                 connection.release();
             });
         });

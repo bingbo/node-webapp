@@ -1,0 +1,14 @@
+extends ../layout
+block content
+    table.table
+        tr
+            td name
+            td password
+            td email
+            td update_time
+        for user in users
+            tr
+                td #{user.name}
+                td #{user.password}
+                td #{user.email}
+                td #{user.update_time}

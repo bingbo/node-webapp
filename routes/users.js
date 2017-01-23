@@ -5,7 +5,8 @@ var userDao = require('../dao/userDao');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+    res.render('user/list');
+  //res.send('respond with a resource');
 });
 router.get('/list', function(req, res, next){
     userDao.queryAll(req, res, next);
