@@ -11,6 +11,9 @@ express --ejs node-webapp
 npm install supervisor
 ##启动应用
 supervisor bin/www
+
+##查看机器上的加密算法
+openssl list-cipher-algorithms
 ```
 
 [test](#test)

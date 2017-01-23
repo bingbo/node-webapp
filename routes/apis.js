@@ -5,22 +5,24 @@ var querystring = require('querystring');
 //var request = request.defaults({jar: true});
 var router = express.Router();
 
-var iv = new Buffer("1234567890123456","utf8");
+var iv = "1234567890123456";
 var key = "3d8be02c70665eaba6877a67ce3d49b2";
 var name = '张冰冰';
-
+var id = '91337';
+var aesUtil = require('../util/aesUtil');
 /* GET apis listing. */
-router.get('/', function(req, res, next) {
+router.get('/test/get', function(req, res, next) {
 
-    var str = cbcEncrypt(name, key, iv);
+    var bname = aesUtil.cbcEncrypt(name, key, iv);
+    var bid = aesUtil.cbcEncrypt(id, key, iv);
     var options = {
         hostname: 'localhost',
-        port: 8080,
-        path: '/web/tagview/list?type=0&taskId=365&tagId=1',
+        port: 8081,
+        path: '/json/aes',
         agent: false,
         method: 'GET',
         headers: {
-            'Cookie':'name='+str
+            'Cookie':'bname='+bname+';bid='+bid
         }
     };
     var request = http.get(options,function (response) {
@@ -39,13 +41,4 @@ router.get('/', function(req, res, next) {
 
 });
 
-function cbcEncrypt(data, secretKey, iv) {
-    secretKey = new Buffer(secretKey, "utf8");
-    secretKey = crypto.createHash("md5").update(secretKey).digest("hex");
-    secretKey = new Buffer(secretKey, "hex");
-    var cipher = crypto.createCipheriv("aes-128-cbc", secretKey, iv), coder = [];
-    coder.push(cipher.update(data, "utf8", "hex"));
-    coder.push(cipher.final("hex"));
-    return coder.join("");
-}
 module.exports = router;
