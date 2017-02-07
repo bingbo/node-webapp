@@ -15,8 +15,6 @@ var jsonWrite = function(res,ret){
 module.exports = {
     queryAll: function(req, res, next){
         pool.getConnection(function(err, connection){
-            var param = req.query || req.params;
-
             connection.query(sql.queryAll, function(err, result){
                 console.log(result);
                 res.render('user/list',{users:result});
